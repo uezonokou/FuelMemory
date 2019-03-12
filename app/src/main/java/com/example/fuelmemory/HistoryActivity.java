@@ -14,10 +14,10 @@ public class HistoryActivity extends Activity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                public void onClick (View v){
-                    finish();
-                }
+                finish();
             }
+
         });
     }
+
 }
