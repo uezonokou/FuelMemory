@@ -24,6 +24,15 @@ public class MainActivity extends Activity {
             }
         });
 
+        Button history=findViewById(R.id.historyButton);
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplication(),HistoryActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
     }
