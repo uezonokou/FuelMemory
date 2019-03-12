@@ -10,10 +10,14 @@ import android.widget.Button;
 
 public class MainActivity extends Activity {
 
+    public static int money;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         Button kirokubutton=findViewById(R.id.MemoryButton);
         kirokubutton.setOnClickListener(new View.OnClickListener() {
@@ -23,6 +27,7 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
+
 
         Button history=findViewById(R.id.historyButton);
         history.setOnClickListener(new View.OnClickListener() {
