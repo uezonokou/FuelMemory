@@ -16,6 +16,70 @@
             android:layout_height="wrap_content"
             android:text="記録画面" />
 
+        <TextView
+            android:id="@+id/daytime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="日時" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="走行距離" />
+
+        <RadioButton
+            android:id="@+id/ODOButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ODO" />
+
+        <RadioButton
+            android:id="@+id/TRIPButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TRIP" />
+
+        <EditText
+            android:id="@+id/distance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="給油量" />
+
+        <EditText
+            android:id="@+id/fuel_amount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="金額" />
+
+        <EditText
+            android:id="@+id/Money"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName" />
+
         <Button
             android:id="@+id/sendMemory"
             android:layout_width="wrap_content"
