@@ -15,16 +15,12 @@ public class HistoryActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-         int sendFuel=0;
-         final int sendMoney=400;
-
 
         Button back = findViewById(R.id.backButton);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.putExtra(SendData,sendMoney);
                 finish();
             }
 
