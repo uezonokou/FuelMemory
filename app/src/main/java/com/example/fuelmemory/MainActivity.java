@@ -7,15 +7,25 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
     public static int money;
+    public TextView Recently;
+    public TextView Fuelavg;
+    public TextView Moneyavg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Recently=findViewById(R.id.Recently_Fuel);
+
+        Fuelavg=findViewById(R.id.avgFuel);
+
+        Moneyavg=findViewById(R.id.avgFuel);
 
 
 
