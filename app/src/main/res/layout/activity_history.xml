@@ -15,9 +15,17 @@
             android:text="過去の記録" />
 
         <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="Button" />
+
+        <Button
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="戻る" />
+
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

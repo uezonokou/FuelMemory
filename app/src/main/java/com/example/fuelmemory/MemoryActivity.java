@@ -47,20 +47,27 @@ public class MemoryActivity extends Activity {
             public void onClick(View v) {
                 String sendDaytime=daytime.getText().toString();
                 String stdistance =distance.getText().toString();
-                double dis = Double.valueOf(stdistance);
+                double dis;
                 String stfuel = fuel_amount.getText().toString();
-                double fuel_am = Double.valueOf(stfuel);
-                double ans = dis / fuel_am;
+                double fuel_am;
                 String stMoney = Money.getText().toString();
-                double money_d = Double.valueOf(stMoney);
-                double L = money_d / fuel_am;
+                double money_d;
+                if(stdistance.isEmpty()==true || stfuel.isEmpty()==true || stMoney.isEmpty()==true) {
+                    Toast.makeText(MemoryActivity.this, "項目すべてに入力してください。", Toast.LENGTH_LONG).show();
+                } else {
 
-                String toastmsg= "燃費は"+ans+"km/lです。\n1L当たり"+L+"円です。";
+                    fuel_am = Double.valueOf(stfuel);
+                    dis = Double.valueOf(stdistance);
+                    double ans = dis / fuel_am;
+                    money_d = Double.valueOf(stMoney);
+                    double L = money_d / fuel_am;
 
-                Toast.makeText(MemoryActivity.this,toastmsg,Toast.LENGTH_LONG).show();
+                    String toastmsg = "燃費は" + ans + "km/lです。\n1L当たり" + L + "円です。";
 
+                    Toast.makeText(MemoryActivity.this, toastmsg, Toast.LENGTH_LONG).show();
 
-                finish();
+                    finish();
+                }
             }
         });
 
