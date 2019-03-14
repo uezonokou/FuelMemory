@@ -14,11 +14,13 @@
             android:layout_height="wrap_content"
             android:text="過去の記録" />
 
-        <TextView
-            android:id="@+id/textView8"
+        <Button
+            android:id="@+id/list1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:background="@android:color/holo_green_light"
+            android:text="記録表示"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/backButton"

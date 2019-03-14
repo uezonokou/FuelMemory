@@ -35,6 +35,15 @@ public class MainActivity extends Activity {
 
         Moneyavg=findViewById(R.id.avgFuel);
 
+        Button Start=findViewById(R.id.StartSetting);
+        Start.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(getApplication(),StartActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
         Button kirokubutton=findViewById(R.id.MemoryButton);

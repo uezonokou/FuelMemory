@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#add8e6">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,7 +28,7 @@
             android:layout_height="wrap_content"
             android:text="直近燃費"
             android:textColor="@android:color/background_dark"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/Recently_Fuel"
@@ -47,7 +48,7 @@
             android:layout_height="wrap_content"
             android:text="平均燃費"
             android:textColor="@android:color/background_dark"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/avgFuel"
@@ -67,7 +68,7 @@
             android:layout_height="wrap_content"
             android:text="ガソリン平均価格"
             android:textColor="@android:color/background_dark"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textView12"
@@ -87,6 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="記録"
+                android:textSize="18sp"
                 tools:layout_editor_absoluteX="91dp"
                 tools:layout_editor_absoluteY="421dp" />
 
@@ -94,7 +96,16 @@
                 android:id="@+id/historyButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="過去の記録" />
+                android:text="過去の記録"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/StartSetting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="初期設定"
+                android:textSize="18sp" />
         </LinearLayout>
 
     </LinearLayout>
