@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 Intent intent =new Intent(getApplication(),MemoryActivity.class);
                 intent.putExtra("MEMORY_DATA",Favg);
-                intent.putExtra("MEMORY_DATA",Favg);
+                intent.putExtra("MEMORY_DATA",Mavg);
                 startActivityForResult(intent,request);
             }
         });
