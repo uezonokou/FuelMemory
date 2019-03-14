@@ -1,6 +1,7 @@
 package com.example.fuelmemory;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
@@ -18,10 +19,15 @@ public class MemoryActivity extends Activity {
     public EditText fuel_amount;
     public EditText Money;
 
+    public double first;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        final Intent intent=getIntent();
+        first=intent.getDoubleExtra(MainActivity.MEMORY_DATA,0);
 
         setContentView(R.layout.acivity_memory);
 
@@ -62,9 +68,13 @@ public class MemoryActivity extends Activity {
                     money_d = Double.valueOf(stMoney);
                     double L = money_d / fuel_am;
 
-                    String toastmsg = "燃費は" + ans + "km/lです。\n1L当たり" + L + "円です。";
+                    String toastmsg = "燃費は" + String.format("%.2f",ans) + "km/lです。\n1L当たり" + String.format("%.2f",L) + "円です。";
 
                     Toast.makeText(MemoryActivity.this, toastmsg, Toast.LENGTH_LONG).show();
+
+                    intent.putExtra(MainActivity.MEMORY_DATA,ans);
+
+                    setResult(RESULT_OK,intent);
 
                     finish();
                 }

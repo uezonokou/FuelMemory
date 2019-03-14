@@ -11,10 +11,18 @@ import android.widget.TextView;
 
 public class MainActivity extends Activity {
 
+    public static final String MEMORY_DATA="Memory of Data";
+
     public static int money;
     public TextView Recently;
     public TextView Fuelavg;
     public TextView Moneyavg;
+
+    public double Favg;
+    public double nenpi;
+    public double Mavg;
+
+    static final int request=1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +42,9 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent =new Intent(getApplication(),MemoryActivity.class);
-                startActivity(intent);
+                intent.putExtra("MEMORY_DATA",Favg);
+                intent.putExtra("MEMORY_DATA",Favg);
+                startActivityForResult(intent,request);
             }
         });
 
@@ -48,7 +58,14 @@ public class MainActivity extends Activity {
             }
         });
 
+    }
 
-
+    protected void onActivityResult(int requestcode, int resultcode,Intent intent){
+        super.onActivityResult(requestcode,resultcode,intent);
+        if(resultcode == RESULT_OK && requestcode == request && null != intent) {
+            nenpi = intent.getDoubleExtra(MainActivity.MEMORY_DATA,0);
+            String nenpiView=String.valueOf(String.format("%.2f",nenpi));
+            Recently.setText(nenpiView+"km/l");
+        }
     }
 }
