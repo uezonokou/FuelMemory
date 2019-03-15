@@ -20,7 +20,9 @@ public class HistoryActivity extends Activity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
+
+                //読み込み用のメソッドの作成
+
                 finish();
             }
 

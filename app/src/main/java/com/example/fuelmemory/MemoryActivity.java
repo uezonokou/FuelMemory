@@ -74,6 +74,8 @@ public class MemoryActivity extends Activity {
 
                     intent.putExtra(MainActivity.MEMORY_DATA,ans);
 
+                    //記録用のメソッドの作成
+
                     setResult(RESULT_OK,intent);
 
                     finish();

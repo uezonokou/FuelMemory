@@ -24,6 +24,8 @@ public class MainActivity extends Activity {
 
     static final int request=1000;
 
+    public String setFilename ="MainViewSet";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
