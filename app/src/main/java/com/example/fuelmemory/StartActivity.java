@@ -24,7 +24,7 @@ public class StartActivity extends Activity {
     public EditText startdis;
     public EditText Memo;
 
-    public String filename = "Startsetting";
+    public String filename = "Startsetting.txt";
 
     public String RTData[];
 

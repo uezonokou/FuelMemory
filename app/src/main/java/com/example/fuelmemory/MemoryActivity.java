@@ -1,6 +1,7 @@
 package com.example.fuelmemory;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -9,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
@@ -20,6 +23,8 @@ public class MemoryActivity extends Activity {
     public EditText Money;
 
     public double first;
+
+    public String fileHead ="Memory_";
 
 
     @Override
@@ -74,7 +79,10 @@ public class MemoryActivity extends Activity {
 
                     intent.putExtra(MainActivity.MEMORY_DATA,ans);
 
-                    //記録用のメソッドの作成
+                    String stans=String.valueOf(ans);
+                    String stL = String.valueOf(L);
+
+                    saveMemory(fileHead,sendDaytime,stdistance,stfuel,stMoney,stans,stL);
 
                     setResult(RESULT_OK,intent);
 
@@ -84,4 +92,25 @@ public class MemoryActivity extends Activity {
         });
 
     }
+
+    public void saveMemory(String header ,String day , String Distanse , String Fuels , String Moneys , String nempi , String LMoney){
+        try (FileOutputStream fileOutputStream = openFileOutput(header + day + ".txt", Context.MODE_PRIVATE);) {
+            String enter ="\n";
+            fileOutputStream.write(day.getBytes());
+            fileOutputStream.write(enter.getBytes());
+            fileOutputStream.write(Distanse.getBytes());
+            fileOutputStream.write(enter.getBytes());
+            fileOutputStream.write(Fuels.getBytes());
+            fileOutputStream.write(enter.getBytes());
+            fileOutputStream.write(Moneys.getBytes());
+            fileOutputStream.write(enter.getBytes());
+            fileOutputStream.write(nempi.getBytes());
+            fileOutputStream.write(enter.getBytes());
+            fileOutputStream.write(LMoney.getBytes());
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
