@@ -14,7 +14,7 @@ public class DataViewActivity extends Activity {
 
     public String day_Data;
 
-    public String inportData[];
+    public String inportData[] = new String[7];
 
     public TextView day;
 
@@ -31,7 +31,7 @@ public class DataViewActivity extends Activity {
 
         FullPath = "Memory_" + day_Data + ".txt";
 
-        readFile(FullPath);
+        inportData=readFile(FullPath);
 
 
         day.setText(inportData[0]);
