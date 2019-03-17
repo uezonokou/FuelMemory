@@ -8,18 +8,16 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ListView
-            android:id="@+id/Memory_List"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#add8e6" />
-
         <TextView
-            android:id="@+id/enmpty"
+            android:id="@+id/textView8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="データがありません"
+            android:text="dataView"
             android:textSize="18sp" />
-    </LinearLayout>
 
+        <TextView
+            android:id="@+id/day"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -1,27 +1,15 @@
 package com.example.fuelmemory;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileFilter;
-import java.io.FileInputStream;
-import java.io.FilenameFilter;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,34 +20,49 @@ public class HistoryActivity extends Activity {
 
     public String filehead ="Memory_";
 
-    public String inportData[];
-
     private List<String> listDirectory = new ArrayList<>();
 
     private String log ="";
 
     public ArrayList<String> list = new ArrayList<String>();
 
+    public static final String DAY_MESSAGE ="dayname_inside";
+
+    private String[] pass = new String[20];
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
+
+
 
         /*ファイルをどうやって検索するか
             記録するときに日付データも遷移時に渡してそれを受け取ってファイル名指定させる？
             /data/data/com.example.fuelmemory/files
          */
 
-
         SearchMemory();
-        
-        
-        //inportData=readFile(filehead);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list);
 
-        ListView listView = findViewById(R.id.Memory_List);
+        final ListView listView = findViewById(R.id.Memory_List);
+
+        listView.setEmptyView(findViewById(R.id.enmpty));
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ListView listView_click = (ListView)parent;
+
+                String selectedItemStr =(String)listView.getItemAtPosition(position);
+
+                Intent intent = new Intent(getApplicationContext(), DataViewActivity.class);
+                intent.putExtra(DAY_MESSAGE,pass[position]);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -104,40 +107,15 @@ public class HistoryActivity extends Activity {
     }
 
     public void putLog(String mess){
+        int cnt =0;
         if(mess!="Startsetting.txt"){
             if(mess.length() > 27) {
                 mess = mess.substring(7, 28);
+                pass[cnt]=mess;
                 log = mess;
                 list.add(log);
             }
         }
     }
 
-
-   /* public String[] readFile(String file) {
-        int cnt = 0;
-        String inportData[] = new String[6];
-
-        try (FileInputStream fileInputStream = openFileInput(file);
-             BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream, "UTF-8"))) {
-
-            String lineBuffer;
-            while ((lineBuffer = reader.readLine()) != null) {
-                if (cnt == 0) {
-                    inportData[0] = lineBuffer;
-                    cnt++;
-                } else if (cnt == 1) {
-                    inportData[1] = lineBuffer;
-                    cnt++;
-                } else if (cnt == 2) {
-                    inportData[2] = lineBuffer;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-        return inportData;
-    }*/
 }
