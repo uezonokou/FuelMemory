@@ -34,8 +34,6 @@ public class HistoryActivity extends Activity {
 
     public String inportData[];
 
-    private final static int REQUEST_PERMISSION =1002;
-
     private List<String> listDirectory = new ArrayList<>();
 
     private String log ="";
@@ -56,7 +54,7 @@ public class HistoryActivity extends Activity {
         SearchMemory();
         
         
-        inportData=readFile(filehead);
+        //inportData=readFile(filehead);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list);
 
@@ -72,7 +70,7 @@ public class HistoryActivity extends Activity {
 
         listDirectory.add(path);
 
-        int m =0;
+        int m = 0;
         int n = 0;
         String[] filename;
         String txtPath =null;
@@ -106,17 +104,17 @@ public class HistoryActivity extends Activity {
     }
 
     public void putLog(String mess){
-        log = mess + "\n";
-
-        /*if(log != "Startsetting.txt"){
-            log=log.substring(7,27);
-            list.add(log);
-        }*/
-        list.add(log);
+        if(mess!="Startsetting.txt"){
+            if(mess.length() > 27) {
+                mess = mess.substring(7, 28);
+                log = mess;
+                list.add(log);
+            }
+        }
     }
 
 
-    public String[] readFile(String file) {
+   /* public String[] readFile(String file) {
         int cnt = 0;
         String inportData[] = new String[6];
 
@@ -141,5 +139,5 @@ public class HistoryActivity extends Activity {
 
 
         return inportData;
-    }
+    }*/
 }
