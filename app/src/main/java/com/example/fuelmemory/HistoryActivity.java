@@ -52,9 +52,6 @@ public class HistoryActivity extends Activity {
             /data/data/com.example.fuelmemory/files
          */
 
-        if(Build.VERSION.SDK_INT >= 23) {
-            checkPermission();
-        }
 
         SearchMemory();
         
@@ -67,40 +64,6 @@ public class HistoryActivity extends Activity {
         listView.setAdapter(adapter);
 
     }
-    
-    private void checkPermission(){
-        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)==
-                PackageManager.PERMISSION_GRANTED){
-            SearchMemory();
-        } else{
-            ReParmission();
-        }
-        
-    }
-
-    private void ReParmission() {
-        if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.READ_EXTERNAL_STORAGE)){
-            ActivityCompat.requestPermissions(HistoryActivity.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},REQUEST_PERMISSION);
-        } else {
-            Toast toast = Toast.makeText(this,"許可がないと履歴を読み込めません",Toast.LENGTH_LONG);
-            toast.show();
-
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,},REQUEST_PERMISSION);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestcode, @NonNull String[] permissions, @NonNull int[] gramtResult){
-        if(requestcode == REQUEST_PERMISSION){
-            if(gramtResult[0] == PackageManager.PERMISSION_GRANTED){
-                SearchMemory();
-            } else {
-                Toast toast = Toast.makeText(this,"許可されなかったため履歴を読み込めませんでした。",Toast.LENGTH_LONG);
-                toast.show();
-            }
-        }
-    }
-
 
 
     public void SearchMemory() {
@@ -126,10 +89,10 @@ public class HistoryActivity extends Activity {
                 if(subfile.isDirectory()){
                     Log.d("debug","isDirectory");
                     listDirectory.add(directory.getPath() + "/" + filename[n]);
-                    txtPath=directory.getPath()+ "/" + filename[n];
+                    txtPath=filename[n];
                 } else if(subfile.getName().endsWith(type)){
                     Log.d("debug","getName");
-                    txtPath = directory.getPath() + "/" + filename[n];
+                    txtPath = filename[n];
 
                     putLog(txtPath);
                 } else {
@@ -143,7 +106,12 @@ public class HistoryActivity extends Activity {
     }
 
     public void putLog(String mess){
-        log += mess + "\n";
+        log = mess + "\n";
+
+        /*if(log != "Startsetting.txt"){
+            log=log.substring(7,27);
+            list.add(log);
+        }*/
         list.add(log);
     }
 
