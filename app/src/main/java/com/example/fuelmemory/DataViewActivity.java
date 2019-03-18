@@ -14,7 +14,7 @@ public class DataViewActivity extends Activity {
 
     public String day_Data;
 
-    public String inportData[] = new String[6];
+    public String inportData[] = new String[8];
 
     public TextView day;
     public TextView yushyu;
@@ -23,6 +23,7 @@ public class DataViewActivity extends Activity {
     public TextView kingaku;
     public TextView fuelvalue;
     public TextView Lkingaku;
+    public TextView kyoriset;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +39,8 @@ public class DataViewActivity extends Activity {
         kingaku=findViewById(R.id.kingaku);
         fuelvalue=findViewById(R.id.Fuel_value);
         Lkingaku=findViewById(R.id.Lkingaku);
+        kyoriset=findViewById(R.id.Kyoriset);
+
 
         String FullPath;
 
@@ -47,12 +50,13 @@ public class DataViewActivity extends Activity {
 
 
         day.setText(inportData[0]);
-        //yushyu.setText(inportData[1]);
+        yushyu.setText(inportData[7]);
         kyori.setText(inportData[1] + "km");
         ryou.setText(inportData[2] + "L");
         kingaku.setText(inportData[3] + "円");
         fuelvalue.setText(inportData[4]+"km/L");
         Lkingaku.setText(inportData[5] + "円");
+        kyoriset.setText(inportData[6]);
 
     }
 
@@ -60,7 +64,7 @@ public class DataViewActivity extends Activity {
 
         public String[] readFile(String file) {
         int cnt = 0;
-        String inportData[] = new String[6];
+        String inportData[] = new String[8];
 
         try (FileInputStream fileInputStream = openFileInput(file);
              BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream, "UTF-8"))) {
@@ -87,6 +91,13 @@ public class DataViewActivity extends Activity {
                     cnt++;
                 }else if (cnt == 5) {
                     inportData[5] = lineBuffer;
+                    cnt++;
+                } else  if(cnt == 6){
+                    inportData[6] = lineBuffer;
+                    cnt++;
+                } else if(cnt == 7){
+                    inportData[7] = lineBuffer;
+                    cnt++;
                 }
             }
         } catch (IOException e) {

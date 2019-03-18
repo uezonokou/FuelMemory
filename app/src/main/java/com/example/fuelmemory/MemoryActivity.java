@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import java.io.FileOutputStream;
@@ -25,6 +27,10 @@ public class MemoryActivity extends Activity {
 
     public String fileHead ="Memory_";
 
+    public RadioGroup kyoriG;
+    public RadioGroup yushuG;
+    public int kyoriId;
+    public int yushuId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +55,17 @@ public class MemoryActivity extends Activity {
 
         Money=findViewById(R.id.Money_m);
 
+        kyoriG=findViewById(R.id.km_choice);
+
+        yushuG=findViewById(R.id.yushu_check);
 
 
         Button sendButton = findViewById(R.id.sendMemory);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                kyoriId=kyoriG.getCheckedRadioButtonId();
+                yushuId=yushuG.getCheckedRadioButtonId();
                 String sendDaytime=daytime.getText().toString();
                 String stdistance =distance.getText().toString();
                 double dis;
@@ -62,7 +73,7 @@ public class MemoryActivity extends Activity {
                 double fuel_am;
                 String stMoney = Money.getText().toString();
                 double money_d;
-                if(stdistance.isEmpty()==true || stfuel.isEmpty()==true || stMoney.isEmpty()==true) {
+                if(stdistance.isEmpty()==true || stfuel.isEmpty()==true || stMoney.isEmpty()==true || kyoriId== -1 || yushuId == -1) {
                     Toast.makeText(MemoryActivity.this, "項目すべてに入力してください。", Toast.LENGTH_LONG).show();
                 } else {
 
@@ -81,7 +92,15 @@ public class MemoryActivity extends Activity {
                     String stans=String.format("%.2f",ans);
                     String stL = String.format("%.2f",L);
 
-                    saveMemory(fileHead,sendDaytime,stdistance,stfuel,stMoney,stans,stL);
+                    RadioButton kyoriButton =(RadioButton) findViewById(kyoriId);
+                    RadioButton yushuButton =(RadioButton) findViewById(yushuId);
+
+                    String setKyori = kyoriButton.getText().toString();
+                    String setYushu = yushuButton.getText().toString();
+
+
+
+                    saveMemory(fileHead,sendDaytime,stdistance,stfuel,stMoney,stans,stL,setKyori,setYushu);
 
                     setResult(RESULT_OK,intent);
 
@@ -92,7 +111,7 @@ public class MemoryActivity extends Activity {
 
     }
 
-    public void saveMemory(String header ,String day , String Distanse , String Fuels , String Moneys , String nempi , String LMoney){
+    public void saveMemory(String header ,String day , String Distanse , String Fuels , String Moneys , String nempi , String LMoney , String putKyori , String putYush){
         try (FileOutputStream fileOutputStream = openFileOutput(header + day + ".txt", Context.MODE_PRIVATE);) {
             String enter ="\n";
             fileOutputStream.write(day.getBytes());
@@ -106,6 +125,10 @@ public class MemoryActivity extends Activity {
             fileOutputStream.write(nempi.getBytes());
             fileOutputStream.write(enter.getBytes());
             fileOutputStream.write(LMoney.getBytes());
+            fileOutputStream.write(enter.getBytes());
+            fileOutputStream.write(putKyori.getBytes());
+            fileOutputStream.write(enter.getBytes());
+            fileOutputStream.write(putYush.getBytes());
 
         } catch (IOException e) {
             e.printStackTrace();
