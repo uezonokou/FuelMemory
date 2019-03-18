@@ -78,8 +78,8 @@ public class MemoryActivity extends Activity {
 
                     intent.putExtra(MainActivity.MEMORY_DATA,ans);
 
-                    String stans=String.valueOf(ans);
-                    String stL = String.valueOf(L);
+                    String stans=String.format("%.2f",ans);
+                    String stL = String.format("%.2f",L);
 
                     saveMemory(fileHead,sendDaytime,stdistance,stfuel,stMoney,stans,stL);
 

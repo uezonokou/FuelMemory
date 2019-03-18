@@ -14,9 +14,15 @@ public class DataViewActivity extends Activity {
 
     public String day_Data;
 
-    public String inportData[] = new String[7];
+    public String inportData[] = new String[6];
 
     public TextView day;
+    public TextView yushyu;
+    public TextView ryou;
+    public TextView kyori;
+    public TextView kingaku;
+    public TextView fuelvalue;
+    public TextView Lkingaku;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +32,12 @@ public class DataViewActivity extends Activity {
         day_Data = intent.getStringExtra(HistoryActivity.DAY_MESSAGE);
 
         day=findViewById(R.id.day);
+        yushyu=findViewById(R.id.Yushu);
+        ryou=findViewById(R.id.ryou);
+        kyori=findViewById(R.id.kyori);
+        kingaku=findViewById(R.id.kingaku);
+        fuelvalue=findViewById(R.id.Fuel_value);
+        Lkingaku=findViewById(R.id.Lkingaku);
 
         String FullPath;
 
@@ -35,6 +47,12 @@ public class DataViewActivity extends Activity {
 
 
         day.setText(inportData[0]);
+        //yushyu.setText(inportData[1]);
+        kyori.setText(inportData[1] + "km");
+        ryou.setText(inportData[2] + "L");
+        kingaku.setText(inportData[3] + "円");
+        fuelvalue.setText(inportData[4]+"km/L");
+        Lkingaku.setText(inportData[5] + "円");
 
     }
 

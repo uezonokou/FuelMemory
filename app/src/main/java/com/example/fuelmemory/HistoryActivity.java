@@ -30,6 +30,8 @@ public class HistoryActivity extends Activity {
 
     private String[] pass = new String[20];
 
+    public int cnt=0;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,11 +109,11 @@ public class HistoryActivity extends Activity {
     }
 
     public void putLog(String mess){
-        int cnt =0;
         if(mess!="Startsetting.txt"){
             if(mess.length() > 27) {
                 mess = mess.substring(7, 28);
                 pass[cnt]=mess;
+                cnt++;
                 log = mess;
                 list.add(log);
             }
