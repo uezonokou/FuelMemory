@@ -16,7 +16,7 @@ public class DataViewActivity extends Activity {
 
     public String day_Data;
 
-    public String inportData[] = new String[8];
+    public String inportData[] = new String[10];
 
     public TextView day;
     public TextView yushyu;
@@ -26,6 +26,7 @@ public class DataViewActivity extends Activity {
     public TextView fuelvalue;
     public TextView Lkingaku;
     public TextView kyoriset;
+    public TextView ODO;
     public Button back;
 
 
@@ -45,6 +46,7 @@ public class DataViewActivity extends Activity {
         Lkingaku=findViewById(R.id.Lkingaku);
         kyoriset=findViewById(R.id.Kyoriset);
         back=findViewById(R.id.back);
+        ODO=findViewById(R.id.ODO);
 
 
         final String FullPath;
@@ -62,6 +64,7 @@ public class DataViewActivity extends Activity {
         fuelvalue.setText(inportData[4]+"km/L");
         Lkingaku.setText(inportData[5] + "円");
         kyoriset.setText(inportData[6]);
+        ODO.setText(inportData[8] + "km");
 
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +81,7 @@ public class DataViewActivity extends Activity {
 
         public String[] readFile(String file) {
         int cnt = 0;
-        String inportData[] = new String[8];
+        String inportData[] = new String[10];
 
         try (FileInputStream fileInputStream = openFileInput(file);
              BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream, "UTF-8"))) {
@@ -111,6 +114,9 @@ public class DataViewActivity extends Activity {
                     cnt++;
                 } else if(cnt == 7){
                     inportData[7] = lineBuffer;
+                    cnt++;
+                } else if(cnt==8){
+                    inportData[8] = lineBuffer;
                     cnt++;
                 }
             }

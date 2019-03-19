@@ -105,7 +105,7 @@ public class HistoryActivity extends Activity {
     }
 
     public void putLog(String mess){
-        if(mess!="Startsetting.txt"){
+        if(mess!="Startsetting.txt" || mess!="ODO.txt"){
             if(mess.length() > 27) {
                 mess = mess.substring(7, 28);
                 pass[cnt]=mess;

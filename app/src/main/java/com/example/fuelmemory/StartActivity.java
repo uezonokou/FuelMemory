@@ -21,6 +21,7 @@ public class StartActivity extends Activity {
     public EditText Memo;
 
     public String filename = "Startsetting.txt";
+    public String ODOfile ="ODO.txt";
 
     public String RTData[];
 
@@ -55,6 +56,8 @@ public class StartActivity extends Activity {
                 if (Memory_Carname != null && Memory_startdis != null && Memory_Memo != null) {
 
                     saveFile(filename, Memory_Carname, Memory_startdis, Memory_Memo);
+                    saveODO(ODOfile,Memory_startdis);
+
                     finish();
                 } else {
                     Toast.makeText(StartActivity.this, "未入力の項目があります。", Toast.LENGTH_LONG).show();
@@ -78,6 +81,15 @@ public class StartActivity extends Activity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void saveODO(String saveODO ,String StartODO){
+        try(FileOutputStream fileOutputStream=openFileOutput(saveODO,Context.MODE_PRIVATE);){
+            fileOutputStream.write(StartODO.getBytes());
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
     }
 
 
