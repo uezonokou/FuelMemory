@@ -106,14 +106,13 @@ public class MemoryActivity extends Activity {
 
                     double TRIP_value;
 
-                    //間違いなくif文のところがおかしい
 
-                    if(setKyori == "ODO"){
+                    if(setKyori.equals("ODO")){
                         TRIP_value=dis - distance_all;
                         ans= TRIP_value / fuel_am;
                         distance_all=dis;
 
-                    }else if(setKyori=="TRIP"){
+                    }else if(setKyori.equals("TRIP")){
                         distance_all=distance_all+dis;
                          ans = dis / fuel_am;
                     }
