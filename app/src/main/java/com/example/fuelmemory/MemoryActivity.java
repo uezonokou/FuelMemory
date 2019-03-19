@@ -106,6 +106,8 @@ public class MemoryActivity extends Activity {
 
                     double TRIP_value;
 
+                    //間違いなくif文のところがおかしい
+
                     if(setKyori == "ODO"){
                         TRIP_value=dis - distance_all;
                         ans= TRIP_value / fuel_am;
