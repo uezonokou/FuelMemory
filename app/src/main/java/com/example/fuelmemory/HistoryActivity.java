@@ -33,25 +33,20 @@ public class HistoryActivity extends Activity {
     public int cnt=0;
 
 
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
 
-
-
-        /*ファイルをどうやって検索するか
-            記録するときに日付データも遷移時に渡してそれを受け取ってファイル名指定させる？
-            /data/data/com.example.fuelmemory/files
-         */
-
         SearchMemory();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list);
-
         final ListView listView = findViewById(R.id.Memory_List);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,list);
 
         listView.setEmptyView(findViewById(R.id.enmpty));
         listView.setAdapter(adapter);
+
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -66,6 +61,7 @@ public class HistoryActivity extends Activity {
             }
         });
 
+
     }
 
 
@@ -77,7 +73,7 @@ public class HistoryActivity extends Activity {
 
         int m = 0;
         int n = 0;
-        String[] filename;
+        String[] filename=null;
         String txtPath =null;
 
         while (listDirectory.size() > m){
@@ -119,5 +115,7 @@ public class HistoryActivity extends Activity {
             }
         }
     }
+
+
 
 }

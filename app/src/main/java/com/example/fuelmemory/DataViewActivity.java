@@ -3,6 +3,8 @@ package com.example.fuelmemory;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -24,12 +26,14 @@ public class DataViewActivity extends Activity {
     public TextView fuelvalue;
     public TextView Lkingaku;
     public TextView kyoriset;
+    public Button back;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dateview);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         day_Data = intent.getStringExtra(HistoryActivity.DAY_MESSAGE);
 
         day=findViewById(R.id.day);
@@ -40,9 +44,10 @@ public class DataViewActivity extends Activity {
         fuelvalue=findViewById(R.id.Fuel_value);
         Lkingaku=findViewById(R.id.Lkingaku);
         kyoriset=findViewById(R.id.Kyoriset);
+        back=findViewById(R.id.back);
 
 
-        String FullPath;
+        final String FullPath;
 
         FullPath = "Memory_" + day_Data + ".txt";
 
@@ -57,6 +62,15 @@ public class DataViewActivity extends Activity {
         fuelvalue.setText(inportData[4]+"km/L");
         Lkingaku.setText(inportData[5] + "円");
         kyoriset.setText(inportData[6]);
+
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
     }
 
