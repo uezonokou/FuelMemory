@@ -1,8 +1,11 @@
 package com.example.fuelmemory;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -28,6 +31,7 @@ public class DataViewActivity extends Activity {
     public TextView kyoriset;
     public TextView ODO;
     public Button back;
+    public Button delete;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,7 @@ public class DataViewActivity extends Activity {
         kyoriset=findViewById(R.id.Kyoriset);
         back=findViewById(R.id.back);
         ODO=findViewById(R.id.ODO);
+        delete=findViewById(R.id.delete);
 
 
         final String FullPath;
@@ -71,6 +76,29 @@ public class DataViewActivity extends Activity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Intent intent = new Intent(getApplication(),HistoryActivity.class);
+
+                AlertDialog.Builder builder=new AlertDialog.Builder(DataViewActivity.this);
+                builder.setMessage("削除してもいいですか？").setPositiveButton("はい", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteFile(FullPath);
+                        startActivity(intent);
+                    }
+                }).setNegativeButton("いいえ", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.show();
+
             }
         });
 
@@ -126,6 +154,16 @@ public class DataViewActivity extends Activity {
 
 
         return inportData;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent intent = new Intent(getApplicationContext(),HistoryActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return false;
     }
 
 
