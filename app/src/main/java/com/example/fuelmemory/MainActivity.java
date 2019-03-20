@@ -36,6 +36,24 @@ public class MainActivity extends Activity {
 
         Fuelavg=findViewById(R.id.avgFuel);
 
+        /*
+        どうやって全部の平均燃費を割り出すか
+
+        記録にある燃費の値を何らかの形ですべて取得
+        ↓
+        データの個数を数える
+        ↓
+        計算
+        ↓
+        表示
+
+        どういう風に削除にも対応したデータ一覧を作るか
+
+
+         */
+
+
+
         Moneyavg=findViewById(R.id.avgFuel);
 
         Button Start=findViewById(R.id.StartSetting);
