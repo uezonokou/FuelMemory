@@ -2,18 +2,20 @@ package com.example.fuelmemory;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class MainActivity extends Activity {
 
     public static final String MEMORY_DATA="Memory of Data";
 
-    public static int money;
     public TextView Recently;
     public TextView Fuelavg;
     public TextView Moneyavg;
@@ -24,8 +26,21 @@ public class MainActivity extends Activity {
 
     static final int request=1000;
 
+    public String Fuelavg_File = "avgFuel.txt";
+    public String Moneyavg_File = "avgMoney.txt";
 
-    public String setFilename ="MainViewSet";
+    public String[] inportFuel;
+
+    public double AllFuel = 0;
+    public double AllMoney = 0;
+
+    public double Fuel_average;
+
+    public String[] inportMoney;
+    public double[] double_Money;
+
+    public double Money_average;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,25 +51,47 @@ public class MainActivity extends Activity {
 
         Fuelavg=findViewById(R.id.avgFuel);
 
-        /*
-        どうやって全部の平均燃費を割り出すか
+        Moneyavg=findViewById(R.id.avgMoney);
 
-        記録にある燃費の値を何らかの形ですべて取得
-        ↓
-        データの個数を数える
-        ↓
-        計算
-        ↓
-        表示
+        inportFuel=readFuel(Fuelavg_File);
 
-        どういう風に削除にも対応したデータ一覧を作るか
+        /*double[] double_Fuel= new double[inportFuel.length];
+
+        int cnt=0;
+            if (inportFuel[cnt] != null) {
+                for(int i=0; i<inportFuel.length; i++){
+
+                    double_Fuel[i]=  Double.valueOf(inportFuel[i]);
+                    AllFuel = AllFuel + double_Fuel[i];
+
+                }
+
+                Fuel_average = AllFuel / cnt - 1;
+                Fuelavg.setText(String.valueOf(Fuel_average));
+
+            }
 
 
-         */
+        cnt=0;
+
+        inportMoney=readMoney(Moneyavg_File);
 
 
+        if(inportMoney[cnt] != null) {
+                while (cnt <= inportMoney.length) {
 
-        Moneyavg=findViewById(R.id.avgFuel);
+                    double_Money[cnt] = Double.valueOf(inportMoney[cnt]);
+                    AllMoney = AllMoney + double_Money[cnt];
+                    cnt++;
+
+                }
+
+                Money_average = AllMoney / cnt - 1;
+                Moneyavg.setText(String.valueOf(Money_average));
+
+
+        }*/
+
 
         Button Start=findViewById(R.id.StartSetting);
         Start.setOnClickListener(new View.OnClickListener() {
@@ -98,4 +135,58 @@ public class MainActivity extends Activity {
             Recently.setText(nenpiView+"km/l");
         }
     }
+
+    public String[] readFuel(String setFuelfile){
+        String inportFuel[] = new String[50];
+        int cnt=0;
+
+        try(FileInputStream fileInputStream = openFileInput(setFuelfile);
+            BufferedReader buffer = new BufferedReader(new InputStreamReader(fileInputStream,"UTF-8"))){
+            String lineBuffer;
+
+            while ((lineBuffer=buffer.readLine()) !=null){
+
+                if(cnt==0){
+                    String gomi = lineBuffer;
+                    cnt++;
+                }else {
+                    inportFuel[cnt-1] = lineBuffer;
+                    cnt++;
+                }
+            }
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return inportFuel;
+    }
+
+
+    public String[] readMoney(String setMoneyfile){
+
+        String inportMoney[] = new String[50];
+        int cnt=0;
+        try(FileInputStream fileInputStream = openFileInput(setMoneyfile);
+            BufferedReader buffer = new BufferedReader(new InputStreamReader(fileInputStream,"UTF-8"))){
+            String lineBuffer;
+
+
+            while ((lineBuffer=buffer.readLine()) !=null){
+
+                if(cnt==0){
+                    String gomi = lineBuffer;
+                    cnt++;
+                }else {
+                    inportMoney[cnt-1] = lineBuffer;
+                    cnt++;
+                }
+            }
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return inportMoney;
+    }
+
+
 }

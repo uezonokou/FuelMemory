@@ -30,6 +30,8 @@ public class MemoryActivity extends Activity {
 
     public String fileHead ="Memory_";
     public String Filename="ODO.txt";
+    public String avgfile="avgFuel.txt";
+    public String avgMoney ="avgMoney.txt";
     public String ODO;
     public String push;
 
@@ -130,11 +132,15 @@ public class MemoryActivity extends Activity {
 
                     saveMemory(fileHead,sendDaytime,stdistance,stfuel,stMoney,stans,stL,setKyori,setYushu,stdisAll);
 
+                    save_avgFuel(stans);
+                    save_avgMoney(stMoney);
+
                     save_distance(stdisAll);
 
                     setResult(RESULT_OK,intent);
 
-                    finish();
+                    Intent intent1 = new Intent(getApplication(),MainActivity.class);
+                    startActivity(intent1);
                 }
             }
         });
@@ -167,6 +173,34 @@ public class MemoryActivity extends Activity {
             e.printStackTrace();
         }
     }
+
+    public void save_avgFuel(String Fuelavg){
+        try (FileOutputStream fileOutputStream = openFileOutput(avgfile, Context.MODE_PRIVATE);) {
+
+            String enter="\n";
+            fileOutputStream.write(enter.getBytes());
+            fileOutputStream.write(Fuelavg.getBytes());
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void save_avgMoney(String Moneyavg){
+        try (FileOutputStream fileOutputStream = openFileOutput(avgMoney, Context.MODE_PRIVATE);) {
+
+            String enter="\n";
+            fileOutputStream.write(enter.getBytes());
+            fileOutputStream.write(Moneyavg.getBytes());
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+
+
+
 
     public void save_distance(String num){
 
