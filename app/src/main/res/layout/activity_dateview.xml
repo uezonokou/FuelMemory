@@ -236,16 +236,23 @@
 
                 <Button
                     android:id="@+id/back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="戻る" />
+                    android:layout_width="100dp"
+                    android:layout_height="70dp"
+                    android:background="@drawable/wood_kanban5"
+                    android:text="戻る"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/background_light"
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/delete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="100dp"
+                    android:layout_height="70dp"
                     android:layout_weight="1"
-                    android:text="削除" />
+                    android:background="@drawable/wood_kanban5"
+                    android:text="削除"
+                    android:textColor="@android:color/background_light"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

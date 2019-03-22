@@ -22,13 +22,26 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp" />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="直近燃費"
-            android:textColor="@android:color/background_dark"
-            android:textSize="18sp" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="120dp"
+                android:layout_height="80dp"
+                android:src="@drawable/wood_kanban5" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="直近燃費"
+                android:textColor="@android:color/background_light"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/Recently_Fuel"
@@ -85,27 +98,36 @@
 
             <Button
                 android:id="@+id/MemoryButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="70dp"
+                android:background="@drawable/wood_kanban4"
                 android:text="記録"
+                android:textColor="@android:color/background_light"
                 android:textSize="18sp"
+                android:textStyle="bold"
                 tools:layout_editor_absoluteX="91dp"
                 tools:layout_editor_absoluteY="421dp" />
 
             <Button
                 android:id="@+id/historyButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="70dp"
+                android:background="@drawable/wood_kanban4"
                 android:text="過去の記録"
-                android:textSize="18sp" />
+                android:textColor="@android:color/background_light"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/StartSetting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="70dp"
                 android:layout_weight="1"
+                android:background="@drawable/wood_kanban4"
                 android:text="初期設定"
-                android:textSize="18sp" />
+                android:textColor="@android:color/background_light"
+                android:textSize="18sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </LinearLayout>
