@@ -45,6 +45,11 @@ public class MemoryActivity extends Activity {
     public double dis;
     public String setKyori;
 
+    public boolean discheck;
+    public boolean Fuelcheck;
+    public boolean Moneycheck;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,11 +90,17 @@ public class MemoryActivity extends Activity {
                 yushuId=yushuG.getCheckedRadioButtonId();
                 String sendDaytime=daytime.getText().toString();
                 String stdistance =distance.getText().toString();
+                discheck=numcheck(stdistance);
                 String stfuel = fuel_amount.getText().toString();
+                Fuelcheck=numcheck(stfuel);
                 double fuel_am;
                 String stMoney = Money.getText().toString();
+                Moneycheck=numcheck(stMoney);
                 double money_d;
-                if(stdistance.isEmpty()==true || stfuel.isEmpty()==true || stMoney.isEmpty()==true || kyoriId== -1 || yushuId == -1) {
+
+                if(discheck==false || Fuelcheck==false || Moneycheck==false){
+                    Toast.makeText(MemoryActivity.this,"数値で入力してください。",Toast.LENGTH_LONG).show();
+                } else if(stdistance.isEmpty()==true || stfuel.isEmpty()==true || stMoney.isEmpty()==true || kyoriId== -1 || yushuId == -1) {
                     Toast.makeText(MemoryActivity.this, "項目すべてに入力してください。", Toast.LENGTH_LONG).show();
                 } else {
 
@@ -123,8 +134,6 @@ public class MemoryActivity extends Activity {
 
                     Toast.makeText(MemoryActivity.this, toastmsg, Toast.LENGTH_LONG).show();
 
-                    intent.putExtra(MainActivity.MEMORY_DATA,ans);
-
                     String stans=String.format("%.2f",ans);
                     String stL = String.format("%.2f",L);
 
@@ -139,8 +148,10 @@ public class MemoryActivity extends Activity {
 
                     setResult(RESULT_OK,intent);
 
-                    Intent intent1 = new Intent(getApplication(),MainActivity.class);
-                    startActivity(intent1);
+                    intent.putExtra(MainActivity.MEMORY_DATA,ans);
+
+                    finish();
+
                 }
             }
         });
@@ -226,6 +237,15 @@ public class MemoryActivity extends Activity {
             e.printStackTrace();
         }
         return push;
+    }
+
+    public boolean numcheck(String num){
+        try{
+            Double.parseDouble(num);
+            return true;
+        }catch (NumberFormatException e){
+            return false;
+        }
     }
 
 }
