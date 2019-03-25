@@ -30,8 +30,9 @@ public class MemoryActivity extends Activity {
 
     public String fileHead ="Memory_";
     public String Filename="ODO.txt";
-    public String avgfile="avgFuel.txt";
-    public String avgMoney ="avgMoney.txt";
+    public String allFuel="AllFuel.txt";
+    public String allMoney ="AllMoney.txt";
+
     public String ODO;
     public String push;
 
@@ -49,13 +50,12 @@ public class MemoryActivity extends Activity {
     public boolean Fuelcheck;
     public boolean Moneycheck;
 
+    public String[] datamap_Fuel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        final Intent intent=getIntent();
-        first=intent.getDoubleExtra(MainActivity.MEMORY_DATA,0);
 
         setContentView(R.layout.acivity_memory);
 
@@ -111,8 +111,8 @@ public class MemoryActivity extends Activity {
                     money_d = Double.valueOf(stMoney);
                     double L = money_d / fuel_am;
 
-                    RadioButton kyoriButton =(RadioButton) findViewById(kyoriId);
-                    RadioButton yushuButton =(RadioButton) findViewById(yushuId);
+                    RadioButton kyoriButton = (RadioButton) findViewById(kyoriId);
+                    RadioButton yushuButton = (RadioButton) findViewById(yushuId);
 
                     setKyori = kyoriButton.getText().toString();
                     String setYushu = yushuButton.getText().toString();
@@ -120,37 +120,36 @@ public class MemoryActivity extends Activity {
                     double TRIP_value;
 
 
-                    if(setKyori.equals("ODO")){
-                        TRIP_value=dis - distance_all;
-                        ans= TRIP_value / fuel_am;
-                        distance_all=dis;
+                    if (setKyori.equals("ODO")) {
+                        TRIP_value = dis - distance_all;
+                        ans = TRIP_value / fuel_am;
+                        distance_all = dis;
 
-                    }else if(setKyori.equals("TRIP")){
-                        distance_all=distance_all+dis;
-                         ans = dis / fuel_am;
+                    } else if (setKyori.equals("TRIP")) {
+                        distance_all = distance_all + dis;
+                        ans = dis / fuel_am;
                     }
 
-                    String toastmsg = "燃費は" + String.format("%.2f",ans) + "km/lです。\n1L当たり" + String.format("%.2f",L) + "円です。";
+                    String toastmsg = "燃費は" + String.format("%.2f", ans) + "km/lです。\n1L当たり" + String.format("%.2f", L) + "円です。";
 
                     Toast.makeText(MemoryActivity.this, toastmsg, Toast.LENGTH_LONG).show();
 
-                    String stans=String.format("%.2f",ans);
-                    String stL = String.format("%.2f",L);
+                    String stans = String.format("%.2f", ans);
+                    String stL = String.format("%.2f", L);
 
-                    String stdisAll=String.valueOf(distance_all);
+                    String stdisAll = String.valueOf(distance_all);
 
-                    saveMemory(fileHead,sendDaytime,stdistance,stfuel,stMoney,stans,stL,setKyori,setYushu,stdisAll);
+                    saveMemory(fileHead, sendDaytime, stdistance, stfuel, stMoney, stans, stL, setKyori, setYushu, stdisAll);
 
                     save_avgFuel(stans);
                     save_avgMoney(stMoney);
 
                     save_distance(stdisAll);
 
-                    setResult(RESULT_OK,intent);
+                    save_now(stans);
 
-                    intent.putExtra(MainActivity.MEMORY_DATA,ans);
-
-                    finish();
+                    Intent intent = new Intent(getApplication(),MainActivity.class);
+                    startActivity(intent);
 
                 }
             }
@@ -186,11 +185,11 @@ public class MemoryActivity extends Activity {
     }
 
     public void save_avgFuel(String Fuelavg){
-        try (FileOutputStream fileOutputStream = openFileOutput(avgfile, Context.MODE_PRIVATE);) {
+        try (FileOutputStream fileOutputStream = openFileOutput(allFuel, Context.MODE_PRIVATE | Context.MODE_APPEND);) {
 
             String enter="\n";
-            fileOutputStream.write(enter.getBytes());
             fileOutputStream.write(Fuelavg.getBytes());
+            fileOutputStream.write(enter.getBytes());
 
         }catch (IOException e){
             e.printStackTrace();
@@ -198,18 +197,16 @@ public class MemoryActivity extends Activity {
     }
 
     public void save_avgMoney(String Moneyavg){
-        try (FileOutputStream fileOutputStream = openFileOutput(avgMoney, Context.MODE_PRIVATE);) {
+        try (FileOutputStream fileOutputStream = openFileOutput(allMoney, Context.MODE_PRIVATE | Context.MODE_APPEND);) {
 
             String enter="\n";
-            fileOutputStream.write(enter.getBytes());
             fileOutputStream.write(Moneyavg.getBytes());
+            fileOutputStream.write(enter.getBytes());
 
         }catch (IOException e){
             e.printStackTrace();
         }
     }
-
-
 
 
 
@@ -247,5 +244,17 @@ public class MemoryActivity extends Activity {
             return false;
         }
     }
+
+    public void save_now(String num){
+
+        deleteFile("nowdata.txt");
+
+        try(FileOutputStream fileOutputStream=openFileOutput("nowdata.txt",Context.MODE_PRIVATE);){
+            fileOutputStream.write(num.getBytes());
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
 
 }

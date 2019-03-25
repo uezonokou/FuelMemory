@@ -106,7 +106,8 @@ public class HistoryActivity extends Activity {
     }
 
     public void putLog(String mess){
-        if(mess!="Startsetting.txt" || mess!="ODO.txt" || mess!="avgFuel.txt" || mess!="avgMoney.txt"){
+        if(mess!="Startsetting.txt" || mess!="ODO.txt" || mess!="Maindata.txt" || mess!="AllFuel.txt" || mess!="AllMoney.txt"
+        || mess!="nowdata.txt"){
             if(mess.length() > 27) {
                 mess = mess.substring(7, 28);
                 pass[cnt]=mess;
