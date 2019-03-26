@@ -45,10 +45,6 @@ public class MainActivity extends Activity {
 
         Moneyavg=findViewById(R.id.avgMoney);
 
-        dataview=findViewById(R.id.dataview);
-
-
-
 
         File startfile =this.getFileStreamPath("Startsetting.txt");
         boolean startExists = startfile.exists();
@@ -83,7 +79,6 @@ public class MainActivity extends Activity {
             for (int i = 0; i < StcaFuel.length; i++) {
                     caFuel[i] = Double.parseDouble(StcaFuel[i]);
             }
-            dataview.setText(String.valueOf(caFuel[2]));
 
             double Fuelaverage = average(caFuel);
 
