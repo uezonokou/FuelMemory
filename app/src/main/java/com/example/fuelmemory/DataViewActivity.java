@@ -1,23 +1,35 @@
 package com.example.fuelmemory;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 
-public class DataViewActivity extends Activity {
+public class DataViewActivity extends AppCompatActivity {
 
     public String day_Data;
 
@@ -34,8 +46,13 @@ public class DataViewActivity extends Activity {
     public TextView ODO;
     public Button back;
     public Button delete;
+    public Button datapushing;
 
     public String FullPath;
+
+    private final int REQUEST_PERMISSION = 1000;
+
+    public String outputPath;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +73,7 @@ public class DataViewActivity extends Activity {
         back = findViewById(R.id.back);
         ODO = findViewById(R.id.ODO);
         delete = findViewById(R.id.delete);
-
+        datapushing=findViewById(R.id.pushOut);
 
         FullPath = "Memory_" + day_Data + ".txt";
 
@@ -104,11 +121,31 @@ public class DataViewActivity extends Activity {
             }
         });
 
+
+        datapushing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder2=new AlertDialog.Builder(DataViewActivity.this);
+                builder2.setMessage("このデータを出力します。\nデータの書き込みを許可してください。").setPositiveButton("はい", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        pushOut();
+                    }
+                }).setNegativeButton("いいえ", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder2.show();
+            }
+        });
+
     }
 
     public String[] readFile(String file) {
         int cnt = 0;
-        String inportData[] = new String[10];
+        String inportData[] = new String[9];
 
         try (FileInputStream fileInputStream = openFileInput(file);
              BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream, "UTF-8"))) {
@@ -163,6 +200,116 @@ public class DataViewActivity extends Activity {
             return true;
         }
         return false;
+    }
+
+    public void pushOut(){
+
+        outputPath= Environment.getExternalStorageState() + FullPath;
+
+        if(Build.VERSION.SDK_INT >= 23){
+            checkPermission();
+        } else{
+            writefile();
+        }
+    }
+
+    private void writefile(){
+
+        if(isEternalStrageWriteable()){
+            File file = new File(outputPath);
+
+            try(FileOutputStream fileOutputStream = new FileOutputStream(file,true);
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream,"UTF-8");
+                BufferedWriter bw = new BufferedWriter(outputStreamWriter);){
+
+                    String enter="\n";
+                    bw.write("日付 : " + inportData[0]);
+                    bw.flush();
+                    bw.write(enter);
+                    bw.flush();
+                    bw.write("燃費 : " + inportData[4] + "km/L");
+                    bw.flush();
+                    bw.write(enter);
+                    bw.flush();
+                    bw.write("走行距離 : " + inportData[1]);
+                    bw.flush();
+                    bw.write(enter);
+                    bw.flush();
+                    bw.write("給油量 : " + inportData[2] + "L");
+                    bw.flush();
+                    bw.write(enter);
+                    bw.flush();
+                    bw.write("金額 : " + inportData[5] + "円");
+                    bw.flush();
+
+                    AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+                    builder1.setMessage("データを下記の場所に出力しました。\n\n" + outputPath).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    builder1.show();
+
+            }catch (Exception e){
+                AlertDialog.Builder builder1 =new AlertDialog.Builder(this);
+                builder1.setMessage("書き込みエラー").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder1.show();
+
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    public boolean isEternalStrageWriteable(){
+        String state = Environment.getExternalStorageState();
+        if(Environment.MEDIA_MOUNTED.equals(state) ||
+        Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)){
+            return true;
+        }
+        return false;
+    }
+
+
+    public void checkPermission(){
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
+                PackageManager.PERMISSION_GRANTED){
+            writefile();
+        }
+        else {
+            requestLocationPermission();
+        }
+    }
+
+    private void requestLocationPermission(){
+        if(ActivityCompat.shouldShowRequestPermissionRationale(this,Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+            ActivityCompat.requestPermissions(DataViewActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    REQUEST_PERMISSION);
+        } else {
+            Toast toast = Toast.makeText(this,"データ出力に許可が必要です",Toast.LENGTH_LONG);
+            toast.show();
+
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,},
+                    REQUEST_PERMISSION);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
+        if(requestCode==REQUEST_PERMISSION){
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                writefile();
+            } else {
+                Toast toast=Toast.makeText(this,"データを出力できません",Toast.LENGTH_LONG);
+                toast.show();
+            }
+        }
     }
 
 }
