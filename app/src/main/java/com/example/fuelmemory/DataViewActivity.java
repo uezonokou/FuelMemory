@@ -269,8 +269,7 @@ public class DataViewActivity extends AppCompatActivity {
 
     public boolean isEternalStrageWriteable(){
         String state = Environment.getExternalStorageState();
-        if(Environment.MEDIA_MOUNTED.equals(state) ||
-        Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)){
+        if(Environment.MEDIA_MOUNTED.equals(state)){
             return true;
         }
         return false;

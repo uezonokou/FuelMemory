@@ -11,6 +11,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -43,26 +44,31 @@ public class StartActivity extends Activity {
         seasonG=findViewById(R.id.seasonG);
         tank=findViewById(R.id.tank);
 
-        RTData = readFile(filename);
+        File startfile =this.getFileStreamPath("Startsetting.txt");
+        boolean startExists = startfile.exists();
 
-        if (RTData != null) {
-            Carname.setText(RTData[0]);
-            startdis.setText(RTData[1]);
-            Memo.setText(RTData[3]);
-            tank.setText(RTData[2]);
-            String radioset = RTData[4];
+        if(startExists!=false) {
+            RTData = readFile(filename);
 
-            int radionum = Integer.parseInt(radioset);
+            if (RTData != null) {
+                Carname.setText(RTData[0]);
+                startdis.setText(RTData[1]);
+                Memo.setText(RTData[3]);
+                tank.setText(RTData[2]);
+                String radioset = RTData[4];
 
-            RadioGroup group =(RadioGroup) findViewById(R.id.seasonG);
-            if(radionum==3000){
-                group.check(R.id.three);
-            } else if(radionum==5000){
-                group.check(R.id.five);
-            } else if(radionum==10000){
-                group.check(R.id.ten);
+                int radionum = Integer.parseInt(radioset);
+
+                RadioGroup group = (RadioGroup) findViewById(R.id.seasonG);
+                if (radionum == 3000) {
+                    group.check(R.id.three);
+                } else if (radionum == 5000) {
+                    group.check(R.id.five);
+                } else if (radionum == 10000) {
+                    group.check(R.id.ten);
+                }
+
             }
-
         }
 
 
