@@ -32,7 +32,7 @@
 
             <Space
                 android:layout_width="wrap_content"
-                android:layout_height="40dp" />
+                android:layout_height="30dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -200,6 +200,64 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="平均価格の表示"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="120dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/wood_kanban5" />
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center"
+                        android:text="航続距離"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/background_light"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="15dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/kouzoku"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="航続距離の表示"
                     android:textColor="@android:color/background_light"
                     android:textSize="24sp"
                     android:textStyle="bold" />

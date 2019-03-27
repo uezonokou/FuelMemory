@@ -26,8 +26,6 @@ public class MemoryActivity extends Activity {
     public EditText fuel_amount;
     public EditText Money;
 
-    public double first;
-
     public String fileHead ="Memory_";
     public String Filename="ODO.txt";
     public String allFuel="AllFuel.txt";
@@ -49,8 +47,6 @@ public class MemoryActivity extends Activity {
     public boolean discheck;
     public boolean Fuelcheck;
     public boolean Moneycheck;
-
-    public String[] datamap_Fuel;
 
 
     @Override

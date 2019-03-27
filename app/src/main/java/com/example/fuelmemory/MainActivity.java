@@ -13,20 +13,18 @@ import android.widget.Toast;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.LineNumberReader;
+
 
 public class MainActivity extends Activity {
 
-    public static final String MEMORY_DATA="Memory of Data";
 
     public TextView Recently;
     public TextView Fuelavg;
     public TextView Moneyavg;
-    public TextView dataview;
+    public TextView kouzokudis;
 
     public String stMoneyAverage;
 
@@ -44,6 +42,8 @@ public class MainActivity extends Activity {
         Fuelavg=findViewById(R.id.avgFuel);
 
         Moneyavg=findViewById(R.id.avgMoney);
+
+        kouzokudis=findViewById(R.id.kouzoku);
 
 
         File startfile =this.getFileStreamPath("Startsetting.txt");
@@ -84,9 +84,6 @@ public class MainActivity extends Activity {
 
             String stFuelaverage = String.format("%.2f", Fuelaverage);
 
-
-
-
             String[] StcaMoney = readAllMoney(allMoney);
             double[] caMoney = new double[StcaMoney.length];
             for (int k = 0; k < StcaMoney.length; k++) {
@@ -103,10 +100,32 @@ public class MainActivity extends Activity {
             Fuelavg.setText(stFuelaverage+"km/l");
             Moneyavg.setText(stMoneyAverage+"円");
 
+            String[] start = readStart("Startsetting.txt");
+            double startODO=Double.parseDouble(start[1]);
+            double oilmaneger=Double.parseDouble(start[4]);
+
+            String stOOD = readODO();
+            double ODO = Double.parseDouble(stOOD);
+
+            if(ODO % oilmaneger == 0){
+                Toast.makeText(MainActivity.this, "エンジンオイルの交換時期です。", Toast.LENGTH_LONG).show();
+            }
+
+
+            double tunk = Double.parseDouble(start[2]);
+
+            double kouzoku = Fuelaverage * tunk;
+
+            String stKouzoku = String.valueOf(kouzoku);
+
+            kouzokudis.setText("約" + stKouzoku + "km");
+
+
         } else{
             Recently.setText("---");
             Fuelavg.setText("---");
             Moneyavg.setText("---");
+            kouzokudis.setText("---");
         }
 
 
@@ -204,6 +223,46 @@ public class MainActivity extends Activity {
             e.printStackTrace();
         }
         return now;
+    }
+
+    public String[] readStart(String Setfilename){
+        int datanum=datacnt(Setfilename);
+
+        String[] dataStart = new String[datanum];
+        String linebuffer;
+        int cnt=0;
+
+        try(FileInputStream fileInputStream = openFileInput(Setfilename);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream,"UTF-8"))){
+            while (cnt < datanum) {
+                if((linebuffer=reader.readLine())!=null) {
+                    dataStart[cnt] = linebuffer;
+                    cnt++;
+                }
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+
+        return dataStart;
+    }
+
+    public String readODO(){
+        String linebuffer;
+        String ODO=null;
+
+
+        try(FileInputStream fileInputStream = openFileInput("ODO.txt");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(fileInputStream,"UTF-8"))){
+
+            if((linebuffer=reader.readLine())!=null) {
+                ODO = linebuffer;
+            }
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        return ODO;
     }
 
     public int datacnt(String filename){
