@@ -92,7 +92,7 @@ public class MainActivity extends Activity {
 
            double allMoneyavg = average(caMoney);
 
-            stMoneyAverage=String.valueOf(allMoneyavg);
+            stMoneyAverage=String.format("%.2f",allMoneyavg);
 
             String nowFuel = readnow();
 

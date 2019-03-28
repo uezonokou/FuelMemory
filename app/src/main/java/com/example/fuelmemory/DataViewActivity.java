@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -48,6 +49,8 @@ public class DataViewActivity extends AppCompatActivity {
     public Button delete;
     public Button datapushing;
 
+    public Button mail;
+
     public String FullPath;
 
     private final int REQUEST_PERMISSION = 1000;
@@ -74,6 +77,7 @@ public class DataViewActivity extends AppCompatActivity {
         ODO = findViewById(R.id.ODO);
         delete = findViewById(R.id.delete);
         datapushing=findViewById(R.id.pushOut);
+        mail=findViewById(R.id.mailer);
 
         FullPath = "Memory_" + day_Data + ".txt";
 
@@ -141,6 +145,27 @@ public class DataViewActivity extends AppCompatActivity {
             }
         });
 
+
+       mail.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               Intent intent = new Intent();
+               intent.setAction(intent.ACTION_SEND);
+               String[] address ={"kou.07221202@gmail.com"};
+
+               intent.putExtra(Intent.EXTRA_EMAIL,address);
+               intent.putExtra(Intent.EXTRA_SUBJECT,"TEST");
+
+               intent.setType("text/txt");
+               intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(Environment.getExternalStorageDirectory() + "/" + FullPath));
+               startActivity(intent);
+
+
+           }
+       });
+
+
+
     }
 
     public String[] readFile(String file) {
@@ -204,7 +229,7 @@ public class DataViewActivity extends AppCompatActivity {
 
     public void pushOut(){
 
-        outputPath= Environment.getExternalStorageState() + FullPath;
+        outputPath= Environment.getExternalStorageDirectory() + "/" + FullPath;
 
         if(Build.VERSION.SDK_INT >= 23){
             checkPermission();

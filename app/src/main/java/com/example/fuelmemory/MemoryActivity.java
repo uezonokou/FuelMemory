@@ -120,6 +120,7 @@ public class MemoryActivity extends Activity {
                         TRIP_value = dis - distance_all;
                         ans = TRIP_value / fuel_am;
                         distance_all = dis;
+                        stdistance = String.valueOf(TRIP_value);
 
                     } else if (setKyori.equals("TRIP")) {
                         distance_all = distance_all + dis;
