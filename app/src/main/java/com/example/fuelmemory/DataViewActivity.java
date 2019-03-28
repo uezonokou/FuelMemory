@@ -156,15 +156,17 @@ public class DataViewActivity extends AppCompatActivity {
                intent.putExtra(Intent.EXTRA_EMAIL,address);
                intent.putExtra(Intent.EXTRA_SUBJECT,"TEST");
 
-               intent.setType("text/txt");
+               intent.setType("text/plain");
                intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(Environment.getExternalStorageDirectory() + "/" + FullPath));
                startActivity(intent);
 
+            //SDカードに出力するには本体ストレージ内のsdcardを読んでも意味がない。
+               //きちんとしたSDカードのパスと権限が必要
 
            }
        });
 
-        ///sdcard  /storage
+
 
     }
 
