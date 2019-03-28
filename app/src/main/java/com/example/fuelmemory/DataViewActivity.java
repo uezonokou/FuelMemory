@@ -164,7 +164,7 @@ public class DataViewActivity extends AppCompatActivity {
            }
        });
 
-
+        ///sdcard  /storage
 
     }
 
@@ -243,7 +243,17 @@ public class DataViewActivity extends AppCompatActivity {
         if(isEternalStrageWriteable()){
             File file = new File(outputPath);
 
-            try(FileOutputStream fileOutputStream = new FileOutputStream(file,true);
+            File sdDir = new File(Environment.getExternalStoragePublicDirectory
+                    (Environment.DIRECTORY_DCIM),FullPath);
+            /*/File[] SDfile = getExternalFilesDirs(null);
+            for(File dir : SDfile){
+                if(Environment.isExternalStorageRemovable(dir));
+                sdDir = new File(dir + "/" + FullPath);
+                break;
+            }*/
+
+
+            try(FileOutputStream fileOutputStream = new FileOutputStream(sdDir,true);
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream,"UTF-8");
                 BufferedWriter bw = new BufferedWriter(outputStreamWriter);){
 
@@ -268,7 +278,7 @@ public class DataViewActivity extends AppCompatActivity {
                     bw.flush();
 
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-                    builder1.setMessage("データを下記の場所に出力しました。\n\n" + outputPath).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    builder1.setMessage("データを下記の場所に出力しました。\n\n" + sdDir).setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
 
