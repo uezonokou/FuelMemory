@@ -101,8 +101,8 @@ public class MainActivity extends Activity {
             Moneyavg.setText(stMoneyAverage+"円");
 
             String[] start = readStart("Startsetting.txt");
-            double startODO=Double.parseDouble(start[1]);
-            double oilmaneger=Double.parseDouble(start[4]);
+            double startODO=Double.parseDouble(start[0]);
+            double oilmaneger=Double.parseDouble(start[2]);
 
             String stOOD = readODO();
             double ODO = Double.parseDouble(stOOD);
@@ -112,11 +112,11 @@ public class MainActivity extends Activity {
             }
 
 
-            double tunk = Double.parseDouble(start[2]);
+            double tunk = Double.parseDouble(start[1]);
 
             double kouzoku = Fuelaverage * tunk;
 
-            String stKouzoku = String.valueOf(kouzoku);
+            String stKouzoku = String.format("%.2f",kouzoku);
 
             kouzokudis.setText("約" + stKouzoku + "km");
 

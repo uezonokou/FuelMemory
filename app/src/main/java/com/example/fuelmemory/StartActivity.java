@@ -19,9 +19,7 @@ import java.io.InputStreamReader;
 
 public class StartActivity extends Activity {
 
-    public EditText Carname;
     public EditText startdis;
-    public EditText Memo;
 
     public String filename = "Startsetting.txt";
     public String ODOfile ="ODO.txt";
@@ -38,9 +36,7 @@ public class StartActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        Carname = findViewById(R.id.CarName);
         startdis = findViewById(R.id.Start_Distance);
-        Memo = findViewById(R.id.memo);
         seasonG=findViewById(R.id.seasonG);
         tank=findViewById(R.id.tank);
 
@@ -51,11 +47,9 @@ public class StartActivity extends Activity {
             RTData = readFile(filename);
 
             if (RTData != null) {
-                Carname.setText(RTData[0]);
-                startdis.setText(RTData[1]);
-                Memo.setText(RTData[3]);
-                tank.setText(RTData[2]);
-                String radioset = RTData[4];
+                startdis.setText(RTData[0]);
+                tank.setText(RTData[1]);
+                String radioset = RTData[2];
 
                 int radionum = Integer.parseInt(radioset);
 
@@ -79,18 +73,16 @@ public class StartActivity extends Activity {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Memory_Carname = Carname.getText().toString();
                 String Memory_startdis = startdis.getText().toString();
-                String Memory_Memo = Memo.getText().toString();
                 int seasonID = seasonG.getCheckedRadioButtonId();
                 String Memory_tunk = tank.getText().toString();
 
-                if (Memory_Carname != null && Memory_startdis != null && Memory_Memo != null && seasonID != -1 && Memory_tunk != null) {
+                if (Memory_startdis != null && seasonID != -1 && Memory_tunk != null) {
 
                     RadioButton season = (RadioButton) findViewById(seasonID);
                     String oilseason = season.getText().toString();
 
-                    saveFile(filename, Memory_Carname, Memory_startdis,Memory_tunk, Memory_Memo, oilseason);
+                    saveFile(filename, Memory_startdis,Memory_tunk, oilseason);
                     saveODO(ODOfile,Memory_startdis);
 
                     finish();
@@ -104,16 +96,12 @@ public class StartActivity extends Activity {
     }
 
 
-    public void saveFile(String File, String MC, String MS, String MT, String MM, String OS) {
+    public void saveFile(String File, String MS, String MT, String OS) {
         try (FileOutputStream fileOutputStream = openFileOutput(File, Context.MODE_PRIVATE);) {
             String enter ="\n";
-            fileOutputStream.write(MC.getBytes());
-            fileOutputStream.write(enter.getBytes());
             fileOutputStream.write(MS.getBytes());
             fileOutputStream.write(enter.getBytes());
             fileOutputStream.write(MT.getBytes());
-            fileOutputStream.write(enter.getBytes());
-            fileOutputStream.write(MM.getBytes());
             fileOutputStream.write(enter.getBytes());
             fileOutputStream.write(OS.getBytes());
 
@@ -149,12 +137,6 @@ public class StartActivity extends Activity {
                     cnt++;
                 } else if (cnt == 2) {
                     RTData[2] = lineBuffer;
-                    cnt++;
-                } else if(cnt == 3){
-                    RTData[3] = lineBuffer;
-                    cnt++;
-                }else if(cnt == 4){
-                    RTData[4] = lineBuffer;
                     cnt++;
                 }
             }

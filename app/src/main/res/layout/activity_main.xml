@@ -18,7 +18,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="35dp" />
+                android:layout_height="15dp" />
 
             <TextView
                 android:id="@+id/textView2"
@@ -27,22 +27,17 @@
                 android:text="燃費管理アプリ"
                 android:textAlignment="center"
                 android:textColor="@android:color/background_light"
-                android:textSize="30sp"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
             <Space
                 android:layout_width="wrap_content"
-                android:layout_height="30dp" />
+                android:layout_height="10dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
-                <Space
-                    android:layout_width="5dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -51,7 +46,7 @@
                     <ImageView
                         android:id="@+id/imageView"
                         android:layout_width="120dp"
-                        android:layout_height="80dp"
+                        android:layout_height="70dp"
                         android:src="@drawable/wood_kanban5" />
 
                     <TextView
@@ -90,17 +85,12 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="25dp" />
+                android:layout_height="10dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
-                <Space
-                    android:layout_width="5dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -109,7 +99,7 @@
                     <ImageView
                         android:id="@+id/imageView2"
                         android:layout_width="120dp"
-                        android:layout_height="80dp"
+                        android:layout_height="70dp"
                         android:src="@drawable/wood_kanban5" />
 
                     <TextView
@@ -148,17 +138,12 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="25dp" />
+                android:layout_height="10dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
-                <Space
-                    android:layout_width="5dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -167,7 +152,7 @@
                     <ImageView
                         android:id="@+id/imageView3"
                         android:layout_width="120dp"
-                        android:layout_height="80dp"
+                        android:layout_height="70dp"
                         android:src="@drawable/wood_kanban5" />
 
                     <TextView
@@ -207,17 +192,12 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="25dp" />
+                android:layout_height="10dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
-                <Space
-                    android:layout_width="5dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
 
                 <RelativeLayout
                     android:layout_width="wrap_content"
@@ -226,7 +206,7 @@
                     <ImageView
                         android:id="@+id/imageView4"
                         android:layout_width="120dp"
-                        android:layout_height="80dp"
+                        android:layout_height="70dp"
                         android:src="@drawable/wood_kanban5" />
 
                     <TextView
@@ -265,7 +245,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="25dp" />
+                android:layout_height="5dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -280,7 +260,7 @@
                 <Button
                     android:id="@+id/MemoryButton"
                     android:layout_width="120dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:background="@drawable/wood_kanban4"
                     android:text="記録"
                     android:textColor="@android:color/background_light"
@@ -292,7 +272,7 @@
                 <Button
                     android:id="@+id/historyButton"
                     android:layout_width="120dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:background="@drawable/wood_kanban4"
                     android:text="過去の記録"
                     android:textColor="@android:color/background_light"
@@ -302,7 +282,7 @@
                 <Button
                     android:id="@+id/StartSetting"
                     android:layout_width="120dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_weight="1"
                     android:background="@drawable/wood_kanban4"
                     android:text="初期設定"
@@ -313,7 +293,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:layout_height="5dp" />
 
         </LinearLayout>
     </ScrollView>

@@ -57,6 +57,8 @@ public class DataViewActivity extends AppCompatActivity {
 
     public String outputPath;
 
+    public String outname;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +82,7 @@ public class DataViewActivity extends AppCompatActivity {
         mail=findViewById(R.id.mailer);
 
         FullPath = "Memory_" + day_Data + ".txt";
+        outname = "Memory" + day_Data;
 
         inportData = readFile(FullPath);
 
@@ -149,19 +152,35 @@ public class DataViewActivity extends AppCompatActivity {
        mail.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               Intent intent = new Intent();
+               final Intent intent = new Intent();
+               final String enter = "\n";
                intent.setAction(intent.ACTION_SEND);
                String[] address ={"kou.07221202@gmail.com"};
 
                intent.putExtra(Intent.EXTRA_EMAIL,address);
-               intent.putExtra(Intent.EXTRA_SUBJECT,"TEST");
+               intent.putExtra(Intent.EXTRA_SUBJECT,outname);
 
-               intent.setType("text/plain");
-               intent.putExtra(Intent.EXTRA_STREAM, Uri.parse(Environment.getExternalStorageDirectory() + "/" + FullPath));
-               startActivity(intent);
+               AlertDialog.Builder builder3=new AlertDialog.Builder(DataViewActivity.this);
+               builder3.setMessage("カンマ区切りを利用しますか？").setPositiveButton("はい", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       intent.putExtra(Intent.EXTRA_TEXT,"------燃費記録------" + enter + enter + "日付," + inportData[0]+"," +
+                               enter + "燃費," + inportData[4]+"," + "km/L," + enter + "走行距離," + inportData[1]+"," + "km," +
+                               enter + "給油量," + inportData[2]+"," + "L," + enter + "金額," + inportData[3]+"," + "円");
 
-            //SDカードに出力するには本体ストレージ内のsdcardを読んでも意味がない。
-               //きちんとしたSDカードのパスと権限が必要
+                       startActivity(intent);
+
+                   }
+               }).setNegativeButton("いいえ", new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialog, int which) {
+                       intent.putExtra(Intent.EXTRA_TEXT,"------燃費記録------" + enter + enter + "日付 : " + inportData[0] +
+                               enter + "燃費 : " + inportData[4] + "km/L" + enter + "走行距離 : " + inportData[1] + "km" +
+                               enter + "給油量 : " + inportData[2] + "L" + enter + "金額 : " + inportData[3] + "円");
+                       startActivity(intent);
+                   }
+               });
+               builder3.show();
 
            }
        });
@@ -247,12 +266,6 @@ public class DataViewActivity extends AppCompatActivity {
 
             File sdDir = new File(Environment.getExternalStoragePublicDirectory
                     (Environment.DIRECTORY_DCIM),FullPath);
-            /*/File[] SDfile = getExternalFilesDirs(null);
-            for(File dir : SDfile){
-                if(Environment.isExternalStorageRemovable(dir));
-                sdDir = new File(dir + "/" + FullPath);
-                break;
-            }*/
 
 
             try(FileOutputStream fileOutputStream = new FileOutputStream(sdDir,true);
@@ -260,23 +273,23 @@ public class DataViewActivity extends AppCompatActivity {
                 BufferedWriter bw = new BufferedWriter(outputStreamWriter);){
 
                     String enter="\n";
-                    bw.write("日付 : " + inportData[0]);
+                    bw.write("日付　:　" + inportData[0]);
                     bw.flush();
                     bw.write(enter);
                     bw.flush();
-                    bw.write("燃費 : " + inportData[4] + "km/L");
+                    bw.write("燃費　:　" + inportData[4] + "km/L");
                     bw.flush();
                     bw.write(enter);
                     bw.flush();
-                    bw.write("走行距離 : " + inportData[1]);
+                    bw.write("走行距離　:　" + inportData[1]);
                     bw.flush();
                     bw.write(enter);
                     bw.flush();
-                    bw.write("給油量 : " + inportData[2] + "L");
+                    bw.write("給油量　:　" + inportData[2] + "L");
                     bw.flush();
                     bw.write(enter);
                     bw.flush();
-                    bw.write("金額 : " + inportData[5] + "円");
+                    bw.write("金額　:　" + inportData[5] + "円");
                     bw.flush();
 
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(this);

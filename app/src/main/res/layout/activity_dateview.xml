@@ -15,7 +15,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="25dp" />
+                android:layout_height="15dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -31,7 +31,7 @@
                     android:id="@+id/textView22"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="日時 : "
+                    android:text="日時　:　"
                     android:textColor="@android:color/background_light"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -46,7 +46,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="25dp" />
+                android:layout_height="15dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -62,7 +62,7 @@
                     android:id="@+id/textView23"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="燃費 : "
+                    android:text="燃費　:　"
                     android:textColor="@android:color/background_light"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -77,7 +77,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="25dp" />
+                android:layout_height="15dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -93,7 +93,7 @@
                     android:id="@+id/textview24"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="油種 : "
+                    android:text="油種　:　"
                     android:textColor="@android:color/background_light"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -108,7 +108,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="25dp" />
+                android:layout_height="15dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -124,7 +124,7 @@
                     android:id="@+id/textView25"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="給油量 : "
+                    android:text="給油量　:　"
                     android:textColor="@android:color/background_light"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -139,7 +139,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="25dp" />
+                android:layout_height="15dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -155,7 +155,7 @@
                     android:id="@+id/textView17"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="距離入力方式 : "
+                    android:text="距離入力方式　:　"
                     android:textColor="@android:color/background_light"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -170,7 +170,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="25dp" />
+                android:layout_height="15dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -186,7 +186,7 @@
                     android:id="@+id/textView28"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="走行距離 : "
+                    android:text="走行距離　:　"
                     android:textColor="@android:color/background_light"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -201,7 +201,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="25dp" />
+                android:layout_height="15dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -217,7 +217,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="総走行距離 : "
+                    android:text="総走行距離　:　"
                     android:textColor="@android:color/background_light"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -233,7 +233,7 @@
 
             <Space
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="15dp"
                 android:layout_weight="1" />
 
             <LinearLayout
@@ -250,7 +250,7 @@
                     android:id="@+id/textView26"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="金額 : "
+                    android:text="金額　:　"
                     android:textColor="@android:color/background_light"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -265,7 +265,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="25dp" />
+                android:layout_height="15dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -281,7 +281,7 @@
                     android:id="@+id/textView27"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="1L当たりの金額 : "
+                    android:text="1L当たりの金額　:　"
                     android:textColor="@android:color/background_light"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -296,7 +296,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="20dp" />
+                android:layout_height="10dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -311,11 +311,12 @@
                 <Button
                     android:id="@+id/back"
                     android:layout_width="100dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:background="@drawable/wood_kanban5"
                     android:text="戻る"
                     android:textAlignment="center"
                     android:textColor="@android:color/background_light"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <Space
@@ -326,11 +327,12 @@
                 <Button
                     android:id="@+id/delete"
                     android:layout_width="100dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_weight="1"
                     android:background="@drawable/wood_kanban5"
                     android:text="削除"
                     android:textColor="@android:color/background_light"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <Space
@@ -341,7 +343,7 @@
                 <Button
                     android:id="@+id/pushOut"
                     android:layout_width="100dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_weight="1"
                     android:background="@drawable/wood_kanban5"
                     android:text="出力"
@@ -368,12 +370,13 @@
                 <Button
                     android:id="@+id/mailer"
                     android:layout_width="100dp"
-                    android:layout_height="70dp"
+                    android:layout_height="60dp"
                     android:layout_weight="1"
                     android:background="@drawable/wood_kanban5"
-                    android:text="データ送信"
+                    android:text="共有"
                     android:textAlignment="center"
                     android:textColor="@android:color/background_light"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
