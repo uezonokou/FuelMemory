@@ -156,6 +156,7 @@ public class DataViewActivity extends AppCompatActivity {
                final String enter = "\n";
                intent.setAction(intent.ACTION_SEND);
                String[] address ={"kou.07221202@gmail.com"};
+               intent.setType("text/plain");
 
                intent.putExtra(Intent.EXTRA_EMAIL,address);
                intent.putExtra(Intent.EXTRA_SUBJECT,outname);
